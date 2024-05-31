@@ -4,7 +4,6 @@ import 'package:contacts_hive/views/widgets/contact_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 class ContactsScreen extends StatelessWidget {
   const ContactsScreen({super.key});
 
@@ -15,15 +14,23 @@ class ContactsScreen extends StatelessWidget {
         // TODO: implement listener
       },
       builder: (context, state) {
-
-        var cubit=BlocProvider.of<ContactCubit>(context);
+        var cubit = BlocProvider.of<ContactCubit>(context);
         return Scaffold(
-          appBar: AppBar(),
-          body: ListView.builder(
-            itemCount: cubit.contacts.length,
-            itemBuilder: (context, index) =>
-                ContactItem(index: index, contact:  cubit.contacts[index]),
+          appBar: AppBar(
+            title: const Text(
+              'Contacts',
+            ),
           ),
+          body: cubit.contacts.isEmpty
+              ? const Center(
+                  child:
+                      Text('No Contacts yet', style: TextStyle(fontSize: 24.0)),
+                )
+              : ListView.builder(
+                  itemCount: cubit.contacts.length,
+                  itemBuilder: (context, index) =>
+                      ContactItem(index: index, contact: cubit.contacts[index]),
+                ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
               Navigator.push(

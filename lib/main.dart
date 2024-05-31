@@ -1,5 +1,6 @@
 import 'package:contacts_hive/constants.dart';
 import 'package:contacts_hive/cubit/contact_cubit.dart';
+import 'package:contacts_hive/cubit/my_bloc_observer.dart';
 import 'package:contacts_hive/models/contact_model.dart';
 import 'package:contacts_hive/views/contacts_screen.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,8 @@ Future<void> main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(ContactModelAdapter());
   await Hive.openBox<ContactModel>(contactsBoxName);
+  Bloc.observer = MyBlocObserver();
+
   runApp(const MyApp());
 }
 

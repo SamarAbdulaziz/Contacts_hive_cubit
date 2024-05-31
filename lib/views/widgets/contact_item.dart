@@ -35,9 +35,7 @@ class _ContactItemState extends State<ContactItem> {
                   index: widget.index,
                 ),
               ),
-
             );
-
           },
           child: Container(
             color: Colors.blue[50],
@@ -50,9 +48,18 @@ class _ContactItemState extends State<ContactItem> {
                   children: <Widget>[
                     Text(
                       widget.contact.name,
+                      style: const TextStyle(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     const SizedBox(height: 10.0),
-                    Text(widget.contact.phone),
+                    Text(
+                      widget.contact.phone,
+                      style: const TextStyle(
+                        fontSize: 18.0,
+                      ),
+                    ),
                   ],
                 ),
                 const Spacer(),
